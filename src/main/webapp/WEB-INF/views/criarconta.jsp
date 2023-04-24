@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Criação de conta de usuário</title>
 
 <!-- CSS only -->
 <link
@@ -64,7 +64,7 @@ input.error {border: 2px solid #df4759}
 					</form>
 					
 					<div class="text-center">
-					<strong>${mensagem}</strong>
+						<strong>${mensagem}</strong>
 					</div>
 					
 				</div>

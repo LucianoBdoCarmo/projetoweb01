@@ -36,13 +36,17 @@ public class CriarContaController {
 			usuario.setSenha(request.getParameter("senha"));
 			
 			//gravando o usuário no banco de dados
-			UsuarioRepository usuarioRepository	= new UsuarioRepository();
-			usuarioRepository.create(usuario);
+			UsuarioRepository usuarioRepository = new UsuarioRepository();
 			
-			modelAndView.addObject
-			("mensagem", "Parabéns " + usuario.getNome() + ", sua conta foi criada com sucesso!");
-		}
-		
+			//verificando se o email informado já está cadastrado
+			if(usuarioRepository.findByEmail(usuario.getEmail()) != null) {
+				modelAndView.addObject("mensagem", "O email " + usuario.getEmail() + ", já está cadastrado no sistema. Tente outro.");
+			}
+			else {
+				usuarioRepository.create(usuario); //cadastrando o usuário
+				modelAndView.addObject("mensagem", "Parabéns " + usuario.getNome() + ", sua conta foi criada com sucesso!");
+			}
+		}		
 		catch(Exception e) {
 		modelAndView.addObject("mensagem", "Falha ao cadastrar: " + e.getMessage());		
 		}
